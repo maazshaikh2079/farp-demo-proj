@@ -1,4 +1,4 @@
-# FARP DEMO - ProdTrac: Professional FastAPI Product Management API
+# FARP DEMO - ProdTrac: Lightweight Product Management System
 
 **ProdTrac** is a full-stack product management system built with a modern, decoupled architecture. It demonstrates how to build a scalable backend with FastAPI and SQLAlchemy 2.0, connected to a reactive frontend built with React.js.
 
