@@ -1,6 +1,5 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
-from contextlib import contextmanager
 from typing import Generator
 
 from app.core.config import settings
@@ -18,7 +17,6 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # 3. Database Dependency
 # This is used in your FastAPI routes to inject a database session
-@contextmanager
 def get_db() -> Generator[Session, None, None]:
     """
     Dependency to get a database session for a request.
