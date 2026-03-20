@@ -1,16 +1,15 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
+from contextlib import contextmanager
 from typing import Generator
-from sqlalchemy.orm import Session
 
 from app.core.config import settings
 
 
 # 1. Create the engine using the dynamic DATABASE_URL from our settings
-# pool_pre_ping=True is vital for production to handle dropped connections
 engine = create_engine(
     settings.DATABASE_URL,
-    pool_pre_ping=True
+    pool_pre_ping=True  # vital for production to handle dropped connections
 )
 
 # 2. Create a session factory
@@ -19,7 +18,13 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # 3. Database Dependency
 # This is used in your FastAPI routes to inject a database session
+@contextmanager
 def get_db() -> Generator[Session, None, None]:
+    """
+    Dependency to get a database session for a request.
+    Ensures the session is closed after the request is finished.
+    """
+
     db = SessionLocal()
     try:
         yield db
