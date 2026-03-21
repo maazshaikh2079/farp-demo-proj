@@ -12,7 +12,7 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str = "root"
     POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: str = "5432"
-    POSTGRES_DB: str = "fastapi-demo_db"
+    POSTGRES_DB: str = "farp-demo_db"
 
     # Computed Property for the Full Connection String
     @property

@@ -1,14 +1,12 @@
-requirements.txt:-
+Command to install dependencies:-
 ```
-fastapi[standard]
-sqlalchemy
-psycopg2-binary
-pydantic-settings
-python-dotenv
+pip install "fastapi[standard]" sqlalchemy psycopg2-binary pydantic-settings python-dotenv
 ```
 
+Project Backend Structure:-
 ```
-fastapi-demo/
+farp-demo-proj/backend/
+|
 ├── app/                        # Main application package
 │   ├── __init__.py
 │   ├── main.py                 # App entry point & initialization

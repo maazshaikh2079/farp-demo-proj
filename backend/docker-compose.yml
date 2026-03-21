@@ -1,7 +1,7 @@
 # docker-compose.yml
-# DB Connection URL: postgresql://${POSTGRES_USER:-root}:${POSTGRES_PASSWORD:-root}@localhost:5432/${POSTGRES_DB:-fastapi-demo_db}  # Variable Substitution (from .env) with a Default Value
+# DB Connection URL: postgresql://${POSTGRES_USER:-root}:${POSTGRES_PASSWORD:-root}@localhost:5432/${POSTGRES_DB:-farp-demo_db}  # Variable Substitution (from .env) with a Default Value
 
-name: fastapi-demo-dev # dev: developement envirnoment
+name: farp-demo-dev # dev: developement envirnoment
 
 services:
   db:
@@ -12,14 +12,14 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-root} # Variable Substitution (from .env) with a Default Value
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-root}
-      POSTGRES_DB: ${POSTGRES_DB:-fastapi-demo_db}
+      POSTGRES_DB: ${POSTGRES_DB:-farp-demo_db}
       PGDATA: /var/lib/postgresql/data/pgdata # Might prevent 18+ error; Tells Postgres to store data in a subdirectory of the mount
     volumes:
       # Mapped to exact path Docker expects to prevent anonymous volumes
       - db-data-vol:/var/lib/postgresql/data
     healthcheck:
       # Ensures Adminer doesn't try to connect before Postgres is actually ready
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-root} -d ${POSTGRES_DB:-fastapi-demo_db}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-root} -d ${POSTGRES_DB:-farp-demo_db}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -37,4 +37,4 @@ services:
 volumes:
   db-data-vol:
     # Explicit industry-standard naming: <project>-<environment>-<service>-<resource_type>
-    name: fastapi-demo-dev-postgres-data-vol
+    name: farp-demo-dev-postgres-data-vol
